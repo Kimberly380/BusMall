@@ -1,0 +1,7 @@
+.allImages{
+  display: inline-block;
+}
+
+input[name=buttons]{
+  display: none;
+}
