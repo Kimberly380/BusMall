@@ -5,7 +5,7 @@ var allImages  = document.getElementsByClassName("allImages");
 var buttons    = document.getElementsByName("buttons");
 var listItems  = document.getElementById("listItems");
 
-//***********Define Object Constructor and put all objects in array****************
+//***********Define Object Constructor and put all objects in array with extra array for file names only****************
 imgObjectsArray = [];
 imgFileArray=[];
 
@@ -77,34 +77,32 @@ function countClicks(){
       imgObjectsArray[srcSelIndex].clickCount +=1;       //log click to object's counter
 
       showImage()
-    }else {   //display images and disable clicking.
+    }else {   //display buttons and disable clicking.
       buttons[0].style.display="inline";
       buttons[1].style.display="inline";
       imgHolder3.disabled=true;
     }
 }
 
-
-
 imgHolder1.addEventListener("click", countClicks, false);
 imgHolder2.addEventListener("click", countClicks, false);
 imgHolder3.addEventListener("click", countClicks, false);
 
 
-//##################button to display results########################
-var percentCalc
+//################## click on button shows results ######################################
+var percentCalc //this is just a placeholder to avoid the divide by zero error...
 
 function genResultsList (){
   for(ii=0; ii<imgObjectsArray.length; ii++){
-    var imageResult = document.createElement("li");
+    var imageResult = document.createElement("li");   //create list items
 
               if(imgObjectsArray[ii].showCount === 0){   //I know this looks messy, but it avoids the NaN of divide by zero. not sure how to format.
                 percentCalc = 0;
               }else {percentCalc = imgObjectsArray[ii].clickCount/imgObjectsArray[ii].showCount}
 
-    var imageResultText = document.createTextNode(imgObjectsArray[ii].imgName + " = " +imgObjectsArray[ii].showCount + " times shown and   "+imgObjectsArray[ii].clickCount + " times selected. That's " +Math.floor(percentCalc*100) +"%");
-    imageResult.appendChild(imageResultText);
-    listItems.appendChild(imageResult);
+    var imageResultText = document.createTextNode(imgObjectsArray[ii].imgName + " = " +imgObjectsArray[ii].showCount + " times shown and   "+imgObjectsArray[ii].clickCount + " times selected. That's " +Math.floor(percentCalc*100) +"%");  //create text for list items.
+    imageResult.appendChild(imageResultText);  //append text to list item
+    listItems.appendChild(imageResult);  //append list item to list
   }
   buttons[0].style.display="none";
   buttons[1].style.display="none"
@@ -114,7 +112,8 @@ function genResultsList (){
 buttons[0].addEventListener("click", genResultsList, false);
 
 
-//################## reset button#####################################
+//################## reset button #########################################################################################
+//NOTE: functionality here is still buggy.  To be fixed!
 
 function reset(){
     listItems.parentNode.removeChild(listItems);
@@ -123,6 +122,5 @@ function reset(){
     buttons[2].style.display="none";
     buttons[1].style.display="none"
 }
-
 
 buttons[2].addEventListener("click", reset ,false);
