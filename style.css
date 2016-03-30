@@ -1,6 +1,36 @@
+body{
+  font-family: sans-serif;
+  font-size: 12pt;
+  font-weight: normal;
+
+}
+
 .allImages{
   display: inline-block;
 }
 
 input[name=buttons]{
   display: none;
+  width: 20%;
+  height: 30px;
+  text-align: center;
+  line-height:50%;
+  border: white 2px;
+  background-color: #2f9aa5;
+  color: white;
+  padding: 10px;
+  font-size: 18px;
+  font-weight: bold;
+
+
+}
+
+input:hover[name=buttons]{
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19)
+
+    }
+
+#listItems {
+
+
+}

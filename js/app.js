@@ -41,6 +41,8 @@ function randomSelector () {
 
 //***************************************************************
 
+//++++++++++++++++++generate random image display+++++++++++++++++++++++++++++
+
 var imagesShown
 var imagesClicked=[];
 
@@ -49,46 +51,39 @@ function showImage(){
     var randNum1 = randomSelector();
     var randNum2 = randomSelector();
     var randNum3 = randomSelector();
-    var imageSelect1 = imgObjectsArray[randNum1].imgFile;
-    var imageSelect2 = imgObjectsArray[randNum2].imgFile;
-    var imageSelect3 = imgObjectsArray[randNum3].imgFile;
-    imgHolder1.src = imageSelect1;
-    imgHolder2.src = imageSelect2;
-    imgHolder3.src = imageSelect3;
+    imgHolder1.src = imgObjectsArray[randNum1].imgFile;
+    imgHolder2.src = imgObjectsArray[randNum2].imgFile;
+    imgHolder3.src = imgObjectsArray[randNum3].imgFile;
     imgObjectsArray[randNum1].showCount += 1;
     imgObjectsArray[randNum2].showCount += 1;
     imgObjectsArray[randNum3].showCount += 1;
 }
 
+/***************************************
+  generate first set of images on load
+****************************************/
+showImage();
+
+//**************************************
+
 //On click (of image), run this function, but not more than 16 times.
 var counter = 0;
 function countClicks(){
-  if(counter < 4){
-      counter = counter + 1 ;
-      console.log(counter);
-    //  console.log(imgFileArray.indexOf(imgHolder1.getAttribute('src')));
-    //  console.log(imgHolder1.getAttribute('src'));
-      console.log(imgHolder1.)
+  if(counter < 16){
+      counter = counter + 1;
+
+      var srcSelect = (this.src).split("/").pop();   //pull out file name from src path of clicked item
+      var srcSelIndex = imgFileArray.indexOf("images/"+srcSelect);  //find file name selected in array of object file names
+      imgObjectsArray[srcSelIndex].clickCount +=1;       //log click to object's counter
+
       showImage()
-    }else {
-      buttons[0].style.display="block";
-      buttons[1].style.display="block";
+    }else {   //display images and disable clicking.
+      buttons[0].style.display="inline";
+      buttons[1].style.display="inline";
       imgHolder3.disabled=true;
     }
 }
 
-      console.log(imgObjectsArray.indexOf(imgHolder1.getAttribute('src')));
-      console.log(imgHolder1.getAttribute('src'));
-
-
-      // imgObjectsArray[randNum1].clickCount += 1;
-      // imgObjectsArray[randNum2].clickCount += 1;
-      // imgObjectsArray[randNum3].clickCount += 1;
-
-  //  imgObjectsArray[].clickCount += 1;
-
-
-showImage();
 
 
 imgHolder1.addEventListener("click", countClicks, false);
@@ -97,26 +92,36 @@ imgHolder3.addEventListener("click", countClicks, false);
 
 
 //##################button to display results########################
+var percentCalc
 
 function genResultsList (){
   for(ii=0; ii<imgObjectsArray.length; ii++){
     var imageResult = document.createElement("li");
-    var imageResultText = document.createTextNode(imgObjectsArray[ii].imgName + " = " +imgObjectsArray[ii].clickCount);
+
+              if(imgObjectsArray[ii].showCount === 0){   //I know this looks messy, but it avoids the NaN of divide by zero. not sure how to format.
+                percentCalc = 0;
+              }else {percentCalc = imgObjectsArray[ii].clickCount/imgObjectsArray[ii].showCount}
+
+    var imageResultText = document.createTextNode(imgObjectsArray[ii].imgName + " = " +imgObjectsArray[ii].showCount + " times shown and   "+imgObjectsArray[ii].clickCount + " times selected. That's " +Math.floor(percentCalc*100) +"%");
     imageResult.appendChild(imageResultText);
     listItems.appendChild(imageResult);
   }
   buttons[0].style.display="none";
+  buttons[1].style.display="none"
   buttons[2].style.display="block";
 }
 
 buttons[0].addEventListener("click", genResultsList, false);
 
+
 //################## reset button#####################################
 
 function reset(){
     listItems.parentNode.removeChild(listItems);
-    buttons[0].style.display="block";
+    imgHolder3.disabled=false;
+    buttons[0].style.display="none";
     buttons[2].style.display="none";
+    buttons[1].style.display="none"
 }
 
 
