@@ -62,7 +62,7 @@ function showImage(){
     imgObjectsArray[randNum2].showCount += 1;
 
     do {var randNum3 = randomSelector();
-    }while(randNum3 === randNum2 && randNum3 ===randNum2);
+    }while(randNum3 === randNum2 || randNum3 ===randNum1);
     imgHolder3.src = imgObjectsArray[randNum3].imgFile;
     imgObjectsArray[randNum3].showCount += 1;
 }
