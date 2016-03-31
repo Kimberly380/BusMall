@@ -21,7 +21,6 @@ function imgObjects (imgName, imgFile){
   imgObjectsArray.push(this);
   imgFileArray.push(this.imgFile);
   imgNameArray.push(this.imgName);
-
 }
 
 //*************image data ***********************************************************
