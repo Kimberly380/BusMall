@@ -25,7 +25,8 @@ header{
 h1{
   text-align: center;
   color: white;
-  font-style: bold;
+  font-style: normal;
+  font-weight: lighter;
   font-family: impact;
   font-size: 32px;
   display:block;
@@ -38,29 +39,40 @@ h1{
   width:1324px;
   height: 1000px;
   margin: 0 auto;
+}
 
+#frames{
+  position: absolute;
+  width:1324px;
+  margin: 0 auto;
+}
+
+#images{
+  width:870px;
+  margin: 0 auto;
+  margin-top: 65px;
+  display: inline-block;
+  z-index: 1000;
 }
 
 #imgHolder1{
-  display: inline;
-  height: 125%;
-  width: auto;
-  margin-left:100px;
-  margin-top: -100px;
+  float:left;
+  margin-left:0px;
+  width: 220px;
+  height: auto;
 }
 
 #imgHolder2{
-  display: inline;
-  height: 125%;
-  width: auto;
+  margin-left:0px;
+  width: 220px;
+  height: auto;
 }
 
 #imgHolder3{
-  display: inline;
-  margin-top: 0px;
-  margin-left:0px;
-  height: 125%;
-  width: auto;
+  float:right;
+  margin-left: 0px;
+  width: 220px;
+  height: auto;
 }
 canvas{
   martin-top: 200px;
@@ -87,14 +99,4 @@ input:hover[name=buttons]{
     }
 
 #listItems {
-}
-
-#posterFrames {
-  display: inline-block;
-  float: left;
-  margin-top: 30px;
-  margin-left: 150px;
-  position: relative;
-  z-index: 999;
-
 }
