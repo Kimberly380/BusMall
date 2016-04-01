@@ -6,6 +6,9 @@ var imgHolder2 = document.getElementById("imgHolder2");
 var imgHolder3 = document.getElementById("imgHolder3");
 var buttons    = document.getElementsByName("buttons");
 var listItems  = document.getElementById("listItems");
+var tempIndex1;  //to set indexes of each image placeholder for eventListners to return
+var tempIndex2;
+var tempIndex3;
 
 var ctx = document.getElementById("resultsChart").getContext("2d"); //var for chart.js
 
@@ -79,16 +82,19 @@ function showImage(){
     var randNum1 = randomSelector();
     imgHolder1.src = imgObjectsArray[randNum1].imgFile;
     imgObjectsArray[randNum1].showCount += 1;
+    tempIndex1=randNum1;
 
     do {var randNum2 = randomSelector();
     }  while(randNum2 === randNum1);
     imgHolder2.src = imgObjectsArray[randNum2].imgFile;
     imgObjectsArray[randNum2].showCount += 1;
+    tempIndex2=randNum2;
 
     do {var randNum3 = randomSelector();
     }while(randNum3 === randNum2 || randNum3 ===randNum1);
     imgHolder3.src = imgObjectsArray[randNum3].imgFile;
     imgObjectsArray[randNum3].showCount += 1;
+    tempIndex3=randNum3;
 }
 
 /***************************************
@@ -107,25 +113,27 @@ function countClicks(){
   if(counter <maxClicks ){
       counter = counter + 1;
 
-
-      var srcSelect = (this.src).split("/").pop();   //pull out file name from src path of clicked item
-      var srcSelIndex = imgFileArray.indexOf("images/"+srcSelect);  //find file name selected in array of object file names
-      imgObjectsArray[srcSelIndex].clickCount +=1;       //log click to object's counter
+      if(imgHolder1){
+      imgObjectsArray[tempIndex1].clickCount +=1;       //log click to object's counter
+      } else if(imgHolder2){
+      imgObjectsArray[tempIndex2].clickCount +=1;
+      } else if (imgHolder3){
+      imgObjectsArray[tempIndex3].clickCount +=1;
+      }
 
       var myStoredStuff = JSON.stringify(imgObjectsArray);
       localStorage.storedObjects=myStoredStuff;
 
       showImage()
 
-    }else if (counter===maxClicks && !extendPlay){
-      buttons[0].style.display="inline";
-      buttons[1].style.display="inline";
+  }else if (counter===maxClicks && !extendPlay){
+    buttons[0].style.display="inline";
+    buttons[1].style.display="inline";
 
-    } else if (counter === maxClicks && extendPlay){
-      buttons[0].style.display="inline";
-    }
+  } else if (counter === maxClicks && extendPlay){
+    buttons[0].style.display="inline";
   }
-
+}
 
 imgHolder1.addEventListener("click", countClicks , false);
 imgHolder2.addEventListener("click", countClicks, false);
