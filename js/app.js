@@ -1,6 +1,9 @@
-var imgHolder1 = document.getElementById("posterFrame1");
-var imgHolder2 = document.getElementById("posterFrame2");
-var imgHolder3 = document.getElementById("posterFrame3");
+var posterFrame1 = document.getElementById("posterFrame1");
+var posterFrame2 = document.getElementById("posterFrame2");
+var posterFrame3 = document.getElementById("posterFrame3");
+var imgHolder1 = document.getElementById("imgHolder1");
+var imgHolder2 = document.getElementById("imgHolder2");
+var imgHolder3 = document.getElementById("imgHolder3");
 var buttons    = document.getElementsByName("buttons");
 var listItems  = document.getElementById("listItems");
 
