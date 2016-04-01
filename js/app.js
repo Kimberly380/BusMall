@@ -1,7 +1,6 @@
-var imgHolder1 = document.getElementById("imgHolder1");
-var imgHolder2 = document.getElementById("imgHolder2");
-var imgHolder3 = document.getElementById("imgHolder3");
-var allImages  = document.getElementsByClassName("allImages");
+var imgHolder1 = document.getElementById("posterFrame1");
+var imgHolder2 = document.getElementById("posterFrame2");
+var imgHolder3 = document.getElementById("posterFrame3");
 var buttons    = document.getElementsByName("buttons");
 var listItems  = document.getElementById("listItems");
 
@@ -25,16 +24,16 @@ function imgObjects (imgName, imgFile){
 
 //*************image data ***********************************************************
 function makeImages () {
-var img1 = new imgObjects ("hotdog", "images/hotdog.jpg");
-var img2 = new imgObjects ("donuts", "images/donuts.jpg");
-var img3 = new imgObjects ("spaghetti", "images/spaghetti.jpg");
-var img4 = new imgObjects ("burger", "images/burger.jpg");
-var img5 = new imgObjects ("fruit", "images/fruit.jpg");
-var img6 = new imgObjects ("iceCream", "images/iceCream.jpg");
-var img7 = new imgObjects ("pancakes", "images/pancakes.jpeg");
-var img8 = new imgObjects ("salad", "images/salad.jpg");
-var img9 = new imgObjects ("tacos", "images/tacos.jpg");
-var img10 = new imgObjects ("sushi", "images/sushi.jpg");
+var img1 = new imgObjects ("Avatar", "images/avatar.jpg");
+var img2 = new imgObjects ("Barak Swan", "images/barackSwan.jpg");
+var img3 = new imgObjects ("City of God", "images/cityOfGod.jpg");
+var img4 = new imgObjects ("Groundhog Day", "images/groundhogDay.jpg");
+var img5 = new imgObjects ("Jaws", "images/jaws.jpg");
+var img6 = new imgObjects ("Matrx", "images/matrix.jpg");
+var img7 = new imgObjects ("Pulp Fiction", "images/pulpFiction.jpg");
+var img8 = new imgObjects ("The Shining", "images/shining.jpg");
+var img9 = new imgObjects ("Shrek", "images/shrek.jpg");
+var img10 = new imgObjects ("The Princess Bride", "images/princessbride.jpg");
 
 }
 
@@ -61,6 +60,7 @@ if(localStorage['storedObjects'] !== undefined){
 // storeData('storedObjects', imgObjectsArray);
 // getStoredData = getData('storedObjects');
 
+
 //********Min Max function for random image selection **********
 
 function randomSelector () {
@@ -86,14 +86,12 @@ function showImage(){
     }while(randNum3 === randNum2 || randNum3 ===randNum1);
     imgHolder3.src = imgObjectsArray[randNum3].imgFile;
     imgObjectsArray[randNum3].showCount += 1;
-
 }
 
 /***************************************
   generate first set of images on load
 ****************************************/
 showImage();
-
 
 //**************************************
 
@@ -105,6 +103,7 @@ var extendPlay=false;
 function countClicks(){
   if(counter <maxClicks ){
       counter = counter + 1;
+
 
       var srcSelect = (this.src).split("/").pop();   //pull out file name from src path of clicked item
       var srcSelIndex = imgFileArray.indexOf("images/"+srcSelect);  //find file name selected in array of object file names
