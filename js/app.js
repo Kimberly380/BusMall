@@ -8,9 +8,9 @@ var listItems  = document.getElementById("listItems");
 var ctx = document.getElementById("resultsChart").getContext("2d"); //var for chart.js
 
 //***********Define Object Constructor and put all objects in array with extra array for file names only****************
-imgObjectsArray = [];
-imgFileArray=[];  //for index location of clicked images
-imgNameArray=[];  //for graph labels
+var imgObjectsArray = [];
+var imgFileArray=[];  //for index location of clicked images
+var imgNameArray=[];  //for graph labels
 
 function imgObjects (imgName, imgFile){
   this.imgName = imgName;
@@ -24,7 +24,6 @@ function imgObjects (imgName, imgFile){
 }
 
 //*************image data ***********************************************************
-
 function makeImages () {
 var img1 = new imgObjects ("hotdog", "images/hotdog.jpg");
 var img2 = new imgObjects ("donuts", "images/donuts.jpg");
@@ -36,8 +35,31 @@ var img7 = new imgObjects ("pancakes", "images/pancakes.jpeg");
 var img8 = new imgObjects ("salad", "images/salad.jpg");
 var img9 = new imgObjects ("tacos", "images/tacos.jpg");
 var img10 = new imgObjects ("sushi", "images/sushi.jpg");
+
 }
-makeImages();
+
+//functions for data storage and retrieval//
+function storeData(key, thingToStore){
+  var tempStorage = JSON.stringify(thingToStore);
+  localStorage[key] = tempStorage;
+}
+
+function getData(key){
+  var tempStorage = localStorage[key];
+  return JSON.parse(tempStorage);
+}
+
+
+//Has user been here before??  If so, grab stored data.  If not, push initial data through constructor.
+if(localStorage['storedObjects'] !== undefined){
+    imgObjectsArray = getData('storedObjects');
+}else {
+  makeImages();
+}
+
+//notes for me to remember how to call these functions:
+// storeData('storedObjects', imgObjectsArray);
+// getStoredData = getData('storedObjects');
 
 //********Min Max function for random image selection **********
 
@@ -64,12 +86,14 @@ function showImage(){
     }while(randNum3 === randNum2 || randNum3 ===randNum1);
     imgHolder3.src = imgObjectsArray[randNum3].imgFile;
     imgObjectsArray[randNum3].showCount += 1;
+
 }
 
 /***************************************
   generate first set of images on load
 ****************************************/
 showImage();
+
 
 //**************************************
 
@@ -85,6 +109,9 @@ function countClicks(){
       var srcSelect = (this.src).split("/").pop();   //pull out file name from src path of clicked item
       var srcSelIndex = imgFileArray.indexOf("images/"+srcSelect);  //find file name selected in array of object file names
       imgObjectsArray[srcSelIndex].clickCount +=1;       //log click to object's counter
+
+      var myStoredStuff = JSON.stringify(imgObjectsArray);
+      localStorage.storedObjects=myStoredStuff;
 
       showImage()
 
