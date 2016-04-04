@@ -1,25 +1,24 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+}
 
 body{
-    background-color: black;
-
-}
+    font-family: sans-serif;
+    font-size: 12pt;
+    font-weight: normal;
+    width: 100%;
+    margin: 0 auto;
+    background-color: #212121;
+        }
 
 #page-wrap{
-  font-family: sans-serif;
-  font-size: 12pt;
-  font-weight: normal;
-  background-image:url("images/backgroundCurtain.png");
-  background-repeat:no-repeat;
-  margin:0 auto;
-  width:1324px;
-  height: 1000px;
-  position:absolute;
-}
-
-header{
-  width:100%;
-  margin-top: 250px;
-
+  background-image:url("images/curtainExtension.png");
+  background-repeat:repeat-y;
+  margin: 0 auto;
+  width: 1320px;
+  height: 1024px;
 }
 
 h1{
@@ -27,28 +26,32 @@ h1{
   color: white;
   font-style: normal;
   font-weight: lighter;
-  font-family: impact;
-  font-size: 32px;
-  display:block;
-  width: 100%;
+  font-family: 'Acme';
+  font-size: 60px;
+  margin: 0 auto;
+}
+p{
+font-size: 24px;
 }
 
 #imagePlusBorder{
   text-align:center;
   display:block;
-  width:1324px;
-  height: 1000px;
+  position:relative;
+  width:1320px;
   margin: 0 auto;
+  margin-top: 60px;
+  z-index: 100;
 }
 
 #frames{
   position: absolute;
-  width:1324px;
+  width:1320px;
   margin: 0 auto;
 }
 
 #images{
-  width:870px;
+  width:880px;
   margin: 0 auto;
   margin-top: 65px;
   display: inline-block;
@@ -74,29 +77,115 @@ h1{
   width: 220px;
   height: auto;
 }
-canvas{
-  martin-top: 200px;
+
+chartStuff{
+  width: 100%;
+  margin: 0 auto;
 }
 
+#percentageChart, #resultsChart{
+  display: inline-block;
+  width: 500px;
+  height: 400px;
+  margin-left: 110px;
+  margin-top: 100px;
+}
 
 input[name=buttons]{
   display: none;
-  width: 20%;
-  height: 30px;
-  text-align: center;
+  width:200px;
+  height: 40px;
   line-height:50%;
-  border: white 2px;
-  background-color: #2f9aa5;
+  background-color: #611213;
   color: white;
   padding: 10px;
   font-size: 18px;
   font-weight: bold;
+  border: none;
+  animation-name: buttonEffects;
+  animation-duration: 1s;
 }
+#resetButton{
+  display: none;
+  position: absolute;
+  margin-left:550px;
+  top: 620px;
+}
+#getResultsButton{
+  position: absolute;
+  display: none;
+  margin-left:450px;
+  top: 700px;
+}
+#tryMoreButton{
+  position: absolute;
+  display: none;
+  margin-left:680px;
+  top: 700px;
+}
+
+
+input[name=buttons]:hover{
+    background-color: #73f73c;
+}
+
+@keyframes buttonEffects{
+    from{margin-left: -1000px;}
+    to{margin-top: 0px;}
+}
+
 
 input:hover[name=buttons]{
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19)
-
     }
 
-#listItems {
+/*#popcorn{
+    position: absolute;
+    animation-name: popcorn1;
+    animation-duration: 1s;
+    animation-delay: 0s;
+    animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(.42, 0, .58, 1);
+    margin-left: -800px;
+    margin-top: 1000px;
+  }*/
+
+
+footer{
+  top: 0px;
+  width: 100%;
+  margin-top: 800px;
+  position: absolute;
+}
+#projector{
+    position: relative;
+    margin-top: 0px;
+    margin-left: 150px;
+    float:left;
+    z-index:10;
+}
+/*#light{
+  position: relative;
+  margin-top: -510px;
+  margin-left: 335px;
+  margin-bottom: 240px;
+  z-index:1;
+}*/
+
+#reel1{
+  position: relative;
+  margin-left: -240px;
+  margin-bottom: 250px;
+  margin-top: -115px;
+  animation: spin 4s linear infinite;
+}
+#reel2{
+  margin-left: -20px;
+  margin-top: -450px;
+  margin-bottom: 255px;
+  animation: spin 4s linear infinite;
+}
+
+@keyframes spin {
+  100%{ -webkit-transform: rotate(360deg); transform: rotate(360deg);}
 }

@@ -4,37 +4,55 @@
     <meta charset="utf-8">
     <title>BusMall</title>
     <link href="style.css" type="text/css" rel="stylesheet" />
+    <link href='https://fonts.googleapis.com/css?family=Knewave' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Acme' rel='stylesheet' type='text/css'>
   </head>
+
   <body>
-  <div id="page-wrap">
+    <div id="page-wrap">
+      <div id="main">
+        <!-- <div id="popcorn"><img src="images/popcorn.png" /></div> -->
 
-    <header>
-      <h1>Which Flick Would You Pick?<h1>
-    </header>
+          <header>
+            <h1>Which Flick Would You Pick?<h1>
+            <p id="subHeader">Click your favorite flick and see how you compare to your friends.</p>
+          </header>
 
-    <div id="imagePlusBorder">
-        <div id="frames">
-        <img id="posterFrame1"  src="images/starlite-poster-case.png" height="500px" />
-        <img id="posterFrame2"  src="images/starlite-poster-case.png" height="500px" />
-        <img id="posterFrame3"  src="images/starlite-poster-case.png" height="500px" />
+          <div id="imagePlusBorder">
+            <div id="frames">
+              <img id="posterFrame1"  src="images/starlite-poster-case.png" height="500px" />
+              <img id="posterFrame2"  src="images/starlite-poster-case.png" height="500px" />
+              <img id="posterFrame3"  src="images/starlite-poster-case.png" height="500px" />
+            </div>
+            <div id="images">
+              <img id="imgHolder1" />
+              <img id="imgHolder2" />
+              <img id="imgHolder3" />
+            </div>
+          </div>
+
+          <div id="buttonStuff">
+            <div id="buttonWrapper">
+              <input id="getResultsButton" type="submit" name="buttons" value="Get Results" />
+              <input id="tryMoreButton" type = "submit" name ="buttons" value ="Play 8 More?" />
+              <input id="resetButton" type = "submit" name="buttons" value = "Reset" />
+            </div>
+          </div>
+
+          <div id="chartStuff">
+              <canvas id="resultsChart" width="500" height="400px"></canvas>
+              <canvas id="percentageChart" height="400px" width="500"></canvas>
+          </div>
+        <footer>
+          <img id="projector" src="images/projector-Black-01.png" />
+          <img id="reel1" src="images/filmReel-01.png" />
+          <img id="reel2" src="images/filmReel-01.png" />
+          <!-- <img id="light" src="images/light-01.png" /> -->
+        </footer>
+
+          <script src='Chart.js'></script>
+          <script src="js\app.js"></script>
       </div>
-      <div id="images">
-        <img id="imgHolder1" />
-        <img id="imgHolder2" />
-        <img id="imgHolder3" />
-      </div>
-  </div>
-
-    <div id="getResultsButton"> <input type="submit" name="buttons" value="Get Results" /></div>
-    <div id="tryMoreButton"> <input type = "submit" name ="buttons" value ="Play 8 More?" /></div>
-    <div id="resetButton"><input type = "submit" name="buttons" value = "Reset" />
-
-    <canvas id="resultsChart" width="400" height="400"></canvas>
-    <ul id="listItems"></ul>
-
-    <script src='Chart.js'></script>
-    <script src="js\app.js"></script>
-
-  </div>
+    </div>
   </body>
 </html>
